@@ -152,7 +152,7 @@ exports.sellInstrumentPromise = async (user, instrument, qty) => {
         let holding = await checkUserHasHoldingInInstrumentPromise(user.user_id, instrument.instrument_id) 
         if(holding.qty + qty < 0)
         {
-            throw new Error ('You cannot sell more qty than your holdings')
+            throw new Error ('qty')
         } 
 
         updateFullHoldingPromise(holding, qty)
@@ -163,7 +163,8 @@ exports.sellInstrumentPromise = async (user, instrument, qty) => {
     }
     catch (error)
     {
-        throw new Error ("You cannot sell a instrument that you don't hold")
+        if(error.message == 'qty') throw new Error('You cannot sell more qty than your holdings')
+        else throw new Error ("You cannot sell a instrument that you don't hold")
     }
 
 }

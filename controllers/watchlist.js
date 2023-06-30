@@ -1,6 +1,6 @@
 
 const Watchlist = require("../models/watchlist");
-const { getWatchlistByIdPromise, getAllWatchlistsPromise, createWatchlistPromise, updateWatchlistPromise, deleteWatchlistPromise } = require("../services/watchlist-service");
+const { getWatchlistByIdPromise, getAllWatchlistsPromise, createWatchlistPromise, updateWatchlistPromise, deleteWatchlistPromise, getWatchlistsByUserIdPromise } = require("../services/watchlist-service");
 
 exports.getWatchlistById = async (req, res, next, id) => {
 
@@ -23,6 +23,21 @@ exports.getWatchlist = (req, res) => {
     return res.status(200).json(req.watchlist)
 }
 
+exports.getWatchlistsByUserId = async (req, res) => {
+
+    try
+    {
+        let watchlists = await getWatchlistsByUserIdPromise(req.query.user_id);
+        return res.status(200).json(watchlists)
+    }
+    catch(errorObj)
+    {
+        return res.status(400).json({
+            error: errorObj.message
+        })
+    }
+
+}
 
 
 exports.getAllWatchlists = async (req, res) => {

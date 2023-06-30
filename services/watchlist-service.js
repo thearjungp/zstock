@@ -27,6 +27,21 @@ exports.getWatchlistByIdPromise = (id) => {
 
 }
 
+exports.getWatchlistsByUserIdPromise = (user_id) => {
+    
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT * FROM watchlists WHERE user_id=?`,
+        [user_id],
+        (err, results) => {
+            if(err)
+            {
+                reject(new Error("Unable to find the watchlists with the given user id"))
+            }
+            resolve(results)
+        })
+    })
+}
+
 exports.getAllWatchlistsPromise = () => {
 
     return new Promise ((resolve, reject) => {
