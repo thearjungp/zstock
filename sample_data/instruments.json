@@ -1,0 +1,28 @@
+
+[
+    {
+        "instrument_name": "NIFTY",
+        "ltp": 18721.15,
+        "type": "INDEX"
+    },
+    {
+        "instrument_name": "BANK NIFTY",
+        "ltp": 43738.30,
+        "type": "INDEX"
+    },
+    {
+        "instrument_name": "HDFC BANK",
+        "ltp": 1639.40,
+        "type": "STOCK"
+    },
+    {
+        "instrument_name": "SIEMENS",
+        "ltp": 3706.65,
+        "type": "STOCK"
+    },
+    {
+        "instrument_name": "ADANIENT",
+        "ltp": 2304.95,
+        "type": "STOCK"
+    }
+]

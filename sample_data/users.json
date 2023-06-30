@@ -1,0 +1,40 @@
+
+[
+    {
+        "name": "Admin",
+        "email": "admin@admin.com",
+        "phone": "9876543200",
+        "pan": "BBBB4444C",
+        "acnt_number": "123456789055555",
+        "role": 1,
+        "available_margin": 70000
+    },
+    {
+        "name": "Arjun",
+        "email": "arjun@arjun.com",
+        "phone": "9876543210",
+        "pan": "AAAAA1234B",
+        "acnt_number": "123456789012345",
+        "role": 0,
+        "available_margin": 56000.56
+    },
+    {
+        "name": "Praveen",
+        "email": "praveen@praveen.com",
+        "phone": "9876543211",
+        "pan": "AAAAA1234C",
+        "acnt_number": "12345678905432",
+        "role": 0,
+        "available_margin": 20000
+    },
+    {
+        "name": "Surya",
+        "email": "surya@surya.com",
+        "phone": "9876543000",
+        "pan": "ADSA1204C",
+        "acnt_number": "12344878905432",
+        "role": 0,
+        "available_margin": 156478.89
+    }
+
+]
