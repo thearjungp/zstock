@@ -108,6 +108,44 @@ exports.deleteWatchlistPromise = (watchlist) => {
     })    
 }
 
+exports.addInstrumentToWatchlistPromise = (watchlist_id, instrument_id) => {
+
+    return new Promise((resolve, reject) => {
+
+        connection.query(`INSERT INTO watchlist_instruments(watchlist_id, instrument_id) VALUES (?, ?)`,
+        [watchlist_id, instrument_id],
+        (err, results) => {
+            if(err){
+                reject(new Error("Instrument already exists in your watchlist"))
+                // reject(new Error(err))
+
+            }
+            return resolve({
+                message: "Instrument added to the Watchlist"
+            });
+        })
+    })
+
+}
+
+exports.removeInstrumentFromWatchlistPromise = (watchlist_id, instrument_id) => {
+
+    return new Promise((resolve, reject) => {
+
+        connection.query(`DELETE FROM watchlist_instruments WHERE watchlist_id=? AND instrument_id=?`,
+        [watchlist_id, instrument_id],
+        (err, results) => {
+            if(err || results.affectedRows == 0){
+                reject(new Error("Instrument does not exists in this Watchlist"))
+            }
+            return resolve({
+                message: "Instrument removed from Watchlist"
+            });
+        })
+    })
+
+}
+
 
 
 let insertPredefinedValsWatchlists = () => {
@@ -125,6 +163,20 @@ let insertPredefinedValsWatchlists = () => {
         return;
       }
       console.log('WATCHLISTS table created')
+  
+    })
+
+    connection.query(`CREATE TABLE IF NOT EXISTS watchlist_instruments(
+        watchlist_id INT NOT NULL,
+        instrument_id INT NOT NULL,
+        PRIMARY KEY (watchlist_id, instrument_id))`,
+      (err, results) => {
+      if(err)
+      {
+        console.error(err);
+        return;
+      }
+      console.log('WATCHLISTS_INSTRUMENTS table created')
   
     })
   

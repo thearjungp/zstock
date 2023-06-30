@@ -1,6 +1,6 @@
 
 const Watchlist = require("../models/watchlist");
-const { getWatchlistByIdPromise, getAllWatchlistsPromise, createWatchlistPromise, updateWatchlistPromise, deleteWatchlistPromise, getWatchlistsByUserIdPromise } = require("../services/watchlist-service");
+const { getWatchlistByIdPromise, getAllWatchlistsPromise, createWatchlistPromise, updateWatchlistPromise, deleteWatchlistPromise, getWatchlistsByUserIdPromise, addInstrumentToWatchlistPromise, removeInstrumentFromWatchlistPromise } = require("../services/watchlist-service");
 
 exports.getWatchlistById = async (req, res, next, id) => {
 
@@ -146,4 +146,45 @@ exports.deleteWatchlist = async (req, res) => {
             error: "You cannot delete other's watchlist"
         })
     }  
+}
+
+
+exports.addInstrumentToWatchlist = async (req, res) => {
+    
+    try
+    {
+        if(req.watchlist.user_id != req.query.user_id)
+        {
+            throw new Error("You cannot add/remove instruments from other's watchlist")
+        }
+        let successMsg = await addInstrumentToWatchlistPromise(req.watchlist.watchlist_id, req.query.instrument_id)
+        return res.status(200).json(successMsg)
+    }  
+    catch(errorObj)
+    {
+        return res.status(400).json({
+            error: errorObj.message
+        })
+    }
+
+}
+
+exports.removeInstrumentFromWatchlist = async (req, res) => {
+
+    try
+    {
+        if(req.watchlist.user_id != req.query.user_id)
+        {
+            throw new Error("You cannot add/remove instruments from other's watchlist")
+        }
+        let successMsg = await removeInstrumentFromWatchlistPromise(req.watchlist.watchlist_id, req.query.instrument_id)
+        return res.status(200).json(successMsg)
+    }  
+    catch(errorObj)
+    {
+        return res.status(400).json({
+            error: errorObj.message
+        })
+    }
+
 }
