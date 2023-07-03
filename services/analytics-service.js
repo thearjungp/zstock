@@ -14,7 +14,7 @@ exports.topInvestorsPromise = (limit) => {
 
     return new Promise ((resolve, reject) => {
 
-        connection.query(`SELECT users.user_id,users.name,users.email,holdings.underlyingValue FROM users RIGHT JOIN holdings ON users.user_id=holdings.user_id ORDER BY users.user_id`,
+        connection.query(`SELECT users.user_id,users.name,users.email,holdings.underlyingValue FROM users INNER JOIN holdings ON users.user_id=holdings.user_id ORDER BY users.user_id`,
         (err, results) => {
             if(err || results[0] == undefined)
             {
