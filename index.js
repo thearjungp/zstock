@@ -40,6 +40,7 @@ const instrumentRoutes = require("./routes/instrument");
 const watchlistRoutes = require("./routes/watchlist")
 const transactionRoutes = require("./routes/transaction")
 const holdingRoutes = require("./routes/holding");
+const analyticsRoutes = require("./routes/analytics")
 
 
 
@@ -49,6 +50,8 @@ app.use("/api", instrumentRoutes)
 app.use("/api", watchlistRoutes)
 app.use("/api", transactionRoutes)
 app.use("/api", holdingRoutes)
+app.use("/api", analyticsRoutes)
+
 
 
 
